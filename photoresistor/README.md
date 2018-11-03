@@ -14,3 +14,7 @@
 <p align="center">
 <img src="https://github.com/robmarkcole/circuitpython-projects/blob/master/photoresistor/setup_photoresistor.png" width="800">
 </p>
+
+<p align="center">
+<img src="https://github.com/robmarkcole/circuitpython-projects/blob/master/photoresistor/trinket_photoresistor.jpg" width="800">
+</p>
