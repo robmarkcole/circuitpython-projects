@@ -1,5 +1,5 @@
 # circuitpython-projects
-circuitpython projects for demo/education.
+circuitpython projects for demo/education. Requirements are imported manually from https://github.com/adafruit/Adafruit_CircuitPython_Bundle (download the zipped latest release)
 
 ## Photoresistor
 A photoresistor is used to detect light/darkness, and toggle an LED colour. The signal from the photoresistor is plotted in real time by Mu.
