@@ -21,3 +21,12 @@
 <p align="center">
 <img src="https://github.com/robmarkcole/circuitpython-projects/blob/master/1-wire%20temperature/MQTT-Explorer.jpg" width="700">
 </p>
+
+## Optional - Home Assistant display
+Display in Home Assistant using an MQTT sensor, add to your `sensors.yaml`
+```yaml
+- platform: mqtt
+  name: m4-temperature
+  state_topic: m4-temperature
+  unit_of_measurement: '°C'
+```
