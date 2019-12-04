@@ -6,7 +6,7 @@
 * Wire to 5V, GND and D5 digital. 4.7 kohm pull-up resistor required between digital and 5V (I only had and used 10 kohm)
 * Requirements: use a `secrets.py`
 * MQTT broker - I am using [mosquitto](https://github.com/eclipse/mosquitto)
-* MQTT chart data - I am using [MQTT explorer](https://mqtt-explorer.com/) to visualise the readings
+* chart data - I am using [MQTT explorer](https://mqtt-explorer.com/) to visualise the MQTT readings. You can also chart data in Mu as shown below:
 
 * **Issue**: after about 500 readings the script hangs
 

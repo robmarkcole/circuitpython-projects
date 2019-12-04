@@ -12,7 +12,7 @@ from adafruit_minimqtt import MQTT
 import adafruit_dotstar
 
 led = neopixel.NeoPixel(board.NEOPIXEL, 1)
-led.brightness = 0.2
+led.brightness = 0.1
 
 # Initialize one-wire bus on board pin D5.
 ow_bus = OneWireBus(board.D5)
@@ -31,7 +31,7 @@ wifi = adafruit_esp32spi_wifimanager.ESPSPI_WiFiManager(esp, secrets)
 
 ## Setup topic and measurement interval
 mqtt_topic = "m4-temperature"
-sleep_time = 5
+sleep_time = 0.1
 
 def connect(client, userdata, flags, rc):
     # This function will be called when the client is connected
@@ -45,7 +45,9 @@ def subscribe(client, userdata, topic, granted_qos):
 
 def publish(client, userdata, topic, pid):
     # This method is called when the client publishes data to a feed.
-    print("Published to {0} with PID {1}".format(topic, pid))
+#    print("Published to {0} with PID {1}".format(topic, pid))
+    return
+
 
 # Connect to WiFi
 wifi.connect()
@@ -71,11 +73,11 @@ client.publish(mqtt_topic, "Hello earthling, logging the temperature!")
 while True:
     try:
         temperature = ds18.temperature
-        print('Temperature: {0:0.3f}C'.format(ds18.temperature))
+        print((ds18.temperature,))
         led[0] = (0, 255, 0) # green
         client.publish(mqtt_topic, temperature)
         time.sleep(0.2)
         led[0] = (255, 0, 0) # red
         time.sleep(sleep_time)
-    except:
-        pass
+    except Exception as err:
+        print('An error occured: {}'.format(err))
