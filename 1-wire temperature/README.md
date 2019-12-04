@@ -1,6 +1,6 @@
 ## 1-wire temperature sensor DS18B20
-* Project: read temperature, publish over MQTT
-* [Sensor on adafruit](https://www.adafruit.com/product/374)
+* Project: read temperature, publish over MQTT (via wifi)
+* [DS18B20 Sensor on adafruit](https://www.adafruit.com/product/374) and [Metro M4 Airlift board](https://shop.pimoroni.com/products/adafruit-metro-m4-express-airlift-wifi-lite)
 * DS18B20 is 1-Wire interface Temperature sensor manufactured by Dallas Semiconductor Corp. Requires only one digital pin for two way communication with a microcontroller.
 * Circuitpython lib (in bundle) -> https://github.com/adafruit/Adafruit_CircuitPython_DS18X20 and [guide](https://learn.adafruit.com/using-ds18b20-temperature-sensor-with-circuitpython). Use [this example](https://github.com/adafruit/Adafruit_CircuitPython_DS18X20/blob/master/examples/ds18x20_simpletest.py)
 * Wire to 5V, GND and D5 digital. 4.7 kohm pull-up resistor required between digital and 5V (I only had and used 10 kohm)
