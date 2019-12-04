@@ -23,10 +23,14 @@
 </p>
 
 ## Optional - Home Assistant display
-Display in Home Assistant using an MQTT sensor, add to your `sensors.yaml`
+Using [Home Assistant](https://www.home-assistant.io/) allows you to integrate the sensor readings into your daily life. Display readings in Home Assistant using an [MQTT sensor](https://www.home-assistant.io/integrations/sensor.mqtt/), add to your `sensors.yaml`
 ```yaml
 - platform: mqtt
   name: m4-temperature
   state_topic: m4-temperature
   unit_of_measurement: '°C'
 ```
+
+<p align="center">
+<img src="https://github.com/robmarkcole/circuitpython-projects/blob/master/1-wire%20temperature/hass-m4-temperature.jpg" width="400">
+</p>
