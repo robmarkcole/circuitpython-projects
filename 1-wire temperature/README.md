@@ -5,10 +5,15 @@
 * Circuitpython lib (in bundle) -> https://github.com/adafruit/Adafruit_CircuitPython_DS18X20 and [guide](https://learn.adafruit.com/using-ds18b20-temperature-sensor-with-circuitpython). Use [this example](https://github.com/adafruit/Adafruit_CircuitPython_DS18X20/blob/master/examples/ds18x20_simpletest.py)
 * Wire to 5V, GND and D5 digital. 4.7 kohm pull-up resistor required between digital and 5V (I only had and used 10 kohm)
 * Requirements: use a `secrets.py`
-* MQTT broker - I am using [mosquitto](https://github.com/eclipse/mosquitto) 
+* MQTT broker - I am using [mosquitto](https://github.com/eclipse/mosquitto)
+* MQTT chart data - I am using [MQTT explorer](https://mqtt-explorer.com/) to visualise the readings
 
-* Issue: after about 500 readings the script hangs
+* **Issue**: after about 500 readings the script hangs
 
 <p align="center">
 <img src="https://github.com/robmarkcole/circuitpython-projects/blob/master/1-wire%20temperature/1wire-setup.jpg" width="800">
+</p>
+
+<p align="center">
+<img src="https://github.com/robmarkcole/circuitpython-projects/blob/master/1-wire%20temperature/MQTT-Explorer.jpg" width="800">
 </p>
