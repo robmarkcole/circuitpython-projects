@@ -1,5 +1,5 @@
 ## 1-wire temperature sensor DS18B20
-* Project: read temperature, publish over MQTT (via wifi)
+* Project: read temperature, publish over MQTT (via wifi) on the `m4-temperature` topic. LED blinks red on each reading.
 * [DS18B20 Sensor on adafruit](https://www.adafruit.com/product/374) and [Metro M4 Airlift board](https://shop.pimoroni.com/products/adafruit-metro-m4-express-airlift-wifi-lite)
 * DS18B20 is 1-Wire interface Temperature sensor manufactured by Dallas Semiconductor Corp. Requires only one digital pin for two way communication with a microcontroller.
 * Circuitpython lib (in bundle) -> https://github.com/adafruit/Adafruit_CircuitPython_DS18X20 and [guide](https://learn.adafruit.com/using-ds18b20-temperature-sensor-with-circuitpython). Use [this example](https://github.com/adafruit/Adafruit_CircuitPython_DS18X20/blob/master/examples/ds18x20_simpletest.py)
