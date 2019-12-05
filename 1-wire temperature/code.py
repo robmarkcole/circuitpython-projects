@@ -10,16 +10,18 @@ from adafruit_onewire.bus import OneWireBus
 from adafruit_ds18x20 import DS18X20
 from adafruit_minimqtt import MQTT
 import adafruit_dotstar
+from secrets import secrets
+from config import config
 
 led = neopixel.NeoPixel(board.NEOPIXEL, 1)
 led.brightness = 0.1
 
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+
 # Initialize one-wire bus on board pin D5.
 ow_bus = OneWireBus(board.D5)
 ds18 = DS18X20(ow_bus, ow_bus.scan()[0])
-
-# Get wifi details and more from a secrets.py file
-from secrets import secrets
 
 # If you are using a board with pre-defined ESP32 Pins:
 esp32_cs = DigitalInOut(board.ESP_CS)
@@ -29,13 +31,7 @@ spi = busio.SPI(board.SCK, board.MOSI, board.MISO)
 esp = adafruit_esp32spi.ESP_SPIcontrol(spi, esp32_cs, esp32_ready, esp32_reset)
 wifi = adafruit_esp32spi_wifimanager.ESPSPI_WiFiManager(esp, secrets)
 
-## Setup topic and measurement interval
-mqtt_topic = "m4-temperature"
-sleep_time = 0.1
-
 def connect(client, userdata, flags, rc):
-    # This function will be called when the client is connected
-    # successfully to the broker.
     print("Connected to MQTT Broker!")
     print("Flags: {0}\n RC: {1}".format(flags, rc))
 
@@ -44,15 +40,12 @@ def subscribe(client, userdata, topic, granted_qos):
     print("Subscribed to {0} with QOS level {1}".format(topic, granted_qos))
 
 def publish(client, userdata, topic, pid):
-    # This method is called when the client publishes data to a feed.
 #    print("Published to {0} with PID {1}".format(topic, pid))
     return
 
-
-# Connect to WiFi
 wifi.connect()
+print("Connected to wifi with IP {}".format(wifi.ip_address()))
 
-# Set up a MiniMQTT Client
 client = MQTT(
     socket,
     broker=secrets['mqtt-broker'],
@@ -64,20 +57,18 @@ client = MQTT(
 client.on_connect = connect
 client.on_subscribe = subscribe
 client.on_publish = publish
-
-print("Attempting to connect to %s" % client.broker)
 client.connect()
-client.subscribe(mqtt_topic)
-client.publish(mqtt_topic, "Hello earthling, logging the temperature!")
 
 while True:
     try:
         temperature = ds18.temperature
         print((ds18.temperature,))
-        led[0] = (0, 255, 0) # green
-        client.publish(mqtt_topic, temperature)
-        time.sleep(0.2)
-        led[0] = (255, 0, 0) # red
-        time.sleep(sleep_time)
+        led[0] = GREEN
+        client.publish(config['mqtt_topic'], temperature)
+        time.sleep(0.1)
+        led[0] = RED
+        time.sleep(config['sleep_time'])
     except Exception as err:
         print('An error occured: {}'.format(err))
+        wifi.reset()
+        wifi.connect()
